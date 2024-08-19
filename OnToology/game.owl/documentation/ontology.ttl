@@ -1,0 +1,726 @@
+@prefix : <http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#> .
+
+<http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#hasAtmosphere
+:hasAtmosphere rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :hasFeature ;
+               rdfs:domain :Game ;
+               rdfs:range :Atmosphere .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#hasFeature
+:hasFeature rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#hasGamePlay
+:hasGamePlay rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasFeature ;
+             rdfs:domain :Game ;
+             rdfs:range :GamePlay .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#hasGenre
+:hasGenre rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :hasFeature ;
+          rdfs:domain :Game ;
+          rdfs:range :Genre .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#hasNumberOfPlayers
+:hasNumberOfPlayers rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :hasFeature ;
+                    rdfs:domain :Game ;
+                    rdfs:range :NumberOfPlayers .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#hasPlatform
+:hasPlatform rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasFeature ;
+             rdfs:domain :Game ;
+             rdfs:range :Platform .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#isAtmosphereOf
+:isAtmosphereOf rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :isFeatureOf ;
+                owl:inverseOf :hasAtmosphere ;
+                rdfs:domain :Atmosphere ;
+                rdfs:range :Game .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#isFeatureOf
+:isFeatureOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#isGamePlayOf
+:isGamePlayOf rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :isFeatureOf ;
+              owl:inverseOf :hasGamePlay ;
+              rdfs:domain :GamePlay ;
+              rdfs:range :Game .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#isGenreOf
+:isGenreOf rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :isFeatureOf ;
+           owl:inverseOf :hasGenre ;
+           rdfs:domain :Genre ;
+           rdfs:range :Game .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#isNumberOfPlayersOf
+:isNumberOfPlayersOf rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :isFeatureOf ;
+                     owl:inverseOf :hasNumberOfPlayers ;
+                     rdfs:domain :NumberOfPlayers ;
+                     rdfs:range :Game .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#isPlatformOf
+:isPlatformOf rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :isFeatureOf ;
+              owl:inverseOf :hasPlatform ;
+              rdfs:domain :Platform ;
+              rdfs:range :Game .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#Adventurous
+:Adventurous rdf:type owl:Class ;
+             rdfs:subClassOf :Atmosphere .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#Aggressive
+:Aggressive rdf:type owl:Class ;
+            rdfs:subClassOf :Atmosphere .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#Atmosphere
+:Atmosphere rdf:type owl:Class ;
+            rdfs:subClassOf :Game .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#BasicGamePlayRule
+:BasicGamePlayRule rdf:type owl:Class ;
+                   rdfs:subClassOf :GamePlay .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#CallOfDuty
+:CallOfDuty rdf:type owl:Class ;
+            rdfs:subClassOf :NamedGames ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasAtmosphere ;
+                              owl:someValuesFrom :Adventurous
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasGamePlay ;
+                              owl:someValuesFrom :GoalOriented
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasGenre ;
+                              owl:someValuesFrom :GameOfAction
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasNumberOfPlayers ;
+                              owl:someValuesFrom [ rdf:type owl:Class ;
+                                                   owl:unionOf ( :MultiPlayer
+                                                                 :SinglePlayer
+                                                               )
+                                                 ]
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasPlatform ;
+                              owl:someValuesFrom [ rdf:type owl:Class ;
+                                                   owl:unionOf ( :GamingConsole
+                                                                 :MobileDevices
+                                                                 :PersonalComputer
+                                                               )
+                                                 ]
+                            ] .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#Chess
+:Chess rdf:type owl:Class ;
+       rdfs:subClassOf :NamedGames ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasAtmosphere ;
+                         owl:someValuesFrom :Peaceful
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasGamePlay ;
+                         owl:someValuesFrom :BasicGamePlayRule
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasGenre ;
+                         owl:someValuesFrom :GameOfInformation
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasNumberOfPlayers ;
+                         owl:someValuesFrom :SinglePlayer
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasPlatform ;
+                         owl:someValuesFrom :Web
+                       ] .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#Game
+:Game rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#GameOfAction
+:GameOfAction rdf:type owl:Class ;
+              rdfs:subClassOf :Genre .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#GameOfInformation
+:GameOfInformation rdf:type owl:Class ;
+                   rdfs:subClassOf :Genre .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#GamePlay
+:GamePlay rdf:type owl:Class ;
+          rdfs:subClassOf :Game .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#GamingConsole
+:GamingConsole rdf:type owl:Class ;
+               rdfs:subClassOf :Platform .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#Genre
+:Genre rdf:type owl:Class ;
+       rdfs:subClassOf :Game .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#GoalOriented
+:GoalOriented rdf:type owl:Class ;
+              rdfs:subClassOf :GamePlay .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#GrandTheftAuto
+:GrandTheftAuto rdf:type owl:Class ;
+                rdfs:subClassOf :NamedGames ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasAtmosphere ;
+                                  owl:someValuesFrom :Aggressive
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasGamePlay ;
+                                  owl:someValuesFrom :GoalOriented
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasGenre ;
+                                  owl:someValuesFrom :GameOfAction
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasNumberOfPlayers ;
+                                  owl:someValuesFrom [ rdf:type owl:Class ;
+                                                       owl:unionOf ( :MultiPlayer
+                                                                     :SinglePlayer
+                                                                   )
+                                                     ]
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasPlatform ;
+                                  owl:someValuesFrom [ rdf:type owl:Class ;
+                                                       owl:unionOf ( :GamingConsole
+                                                                     :PersonalComputer
+                                                                   )
+                                                     ]
+                                ] .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#MobileDevices
+:MobileDevices rdf:type owl:Class ;
+               rdfs:subClassOf :Platform .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#MultiPlayer
+:MultiPlayer rdf:type owl:Class ;
+             rdfs:subClassOf :NumberOfPlayers .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#NamedGames
+:NamedGames rdf:type owl:Class ;
+            rdfs:subClassOf :Game .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#NumberOfPlayers
+:NumberOfPlayers rdf:type owl:Class ;
+                 rdfs:subClassOf :Game .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#Peaceful
+:Peaceful rdf:type owl:Class ;
+          rdfs:subClassOf :Atmosphere .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#PersonalComputer
+:PersonalComputer rdf:type owl:Class ;
+                  rdfs:subClassOf :Platform .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#Platform
+:Platform rdf:type owl:Class ;
+          rdfs:subClassOf :Game .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#QuizPlanet
+:QuizPlanet rdf:type owl:Class ;
+            rdfs:subClassOf :NamedGames ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasAtmosphere ;
+                              owl:someValuesFrom :Peaceful
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasGamePlay ;
+                              owl:someValuesFrom :GoalOriented
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasGenre ;
+                              owl:someValuesFrom :GameOfInformation
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasNumberOfPlayers ;
+                              owl:someValuesFrom :MultiPlayer
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasPlatform ;
+                              owl:someValuesFrom :Web
+                            ] .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#SinglePlayer
+:SinglePlayer rdf:type owl:Class ;
+              rdfs:subClassOf :NumberOfPlayers .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#Sudoku
+:Sudoku rdf:type owl:Class ;
+        rdfs:subClassOf :NamedGames ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasAtmosphere ;
+                          owl:someValuesFrom :Peaceful
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasGamePlay ;
+                          owl:someValuesFrom :GoalOriented
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasGenre ;
+                          owl:someValuesFrom :GameOfInformation
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasNumberOfPlayers ;
+                          owl:someValuesFrom :SinglePlayer
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasPlatform ;
+                          owl:someValuesFrom :Web
+                        ] .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#SuperMario
+:SuperMario rdf:type owl:Class ;
+            rdfs:subClassOf :NamedGames ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasAtmosphere ;
+                              owl:someValuesFrom :Aggressive
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasGamePlay ;
+                              owl:someValuesFrom :BasicGamePlayRule
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasGenre ;
+                              owl:someValuesFrom :GameOfAction
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasNumberOfPlayers ;
+                              owl:someValuesFrom [ rdf:type owl:Class ;
+                                                   owl:unionOf ( :MultiPlayer
+                                                                 :SinglePlayer
+                                                               )
+                                                 ]
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasPlatform ;
+                              owl:someValuesFrom [ rdf:type owl:Class ;
+                                                   owl:unionOf ( :MobileDevices
+                                                                 :PersonalComputer
+                                                               )
+                                                 ]
+                            ] .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#Web
+:Web rdf:type owl:Class ;
+     rdfs:subClassOf :Platform .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#WorldOfTanks
+:WorldOfTanks rdf:type owl:Class ;
+              rdfs:subClassOf :NamedGames .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#Adventurous
+:Adventurous rdf:type owl:NamedIndividual ,
+                      :Atmosphere ,
+                      :Game ;
+             :isAtmosphereOf :CallOfDuty ,
+                             :CallOfDuty1 ,
+                             :WorldOfTanks ,
+                             :WorldOfTanks1 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#Aggressive
+:Aggressive rdf:type owl:NamedIndividual ,
+                     :Atmosphere ,
+                     :Game ;
+            :isAtmosphereOf :GTA2 ,
+                            :GrandTheftAuto ,
+                            :SuperMario ,
+                            :SuperMario1 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#BasicGamePlayRule
+:BasicGamePlayRule rdf:type owl:NamedIndividual ,
+                            :Game ,
+                            :GamePlay ;
+                   :isGamePlayOf :Chess ,
+                                 :ChessMaster ,
+                                 :SuperMario ,
+                                 :SuperMario1 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#CallOfDuty
+:CallOfDuty rdf:type owl:NamedIndividual ,
+                     :Game ,
+                     :NamedGames ;
+            :hasAtmosphere :Adventurous ;
+            :hasGamePlay :GoalOriented ;
+            :hasGenre :GameOfAction ;
+            :hasNumberOfPlayers :Multiplayer ,
+                                :SinglePlayer ;
+            :hasPlatform :GamingConsole ,
+                         :MobileDevices ,
+                         :PersonalComputer .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#CallOfDuty1
+:CallOfDuty1 rdf:type owl:NamedIndividual ,
+                      :CallOfDuty ,
+                      :Game ,
+                      :NamedGames ;
+             :hasAtmosphere :Adventurous ;
+             :hasGamePlay :GoalOriented ;
+             :hasGenre :GameOfAction ;
+             :hasNumberOfPlayers :Multiplayer ,
+                                 :SinglePlayer ;
+             :hasPlatform :GamingConsole ,
+                          :MobileDevices ,
+                          :PersonalComputer .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#Chess
+:Chess rdf:type owl:NamedIndividual ,
+                :Game ,
+                :NamedGames ;
+       :hasAtmosphere :Peaceful ;
+       :hasGamePlay :BasicGamePlayRule ;
+       :hasGenre :GameOfInformation ;
+       :hasNumberOfPlayers :SinglePlayer ;
+       :hasPlatform :Web .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#ChessMaster
+:ChessMaster rdf:type owl:NamedIndividual ,
+                      :Chess ,
+                      :Game ,
+                      :NamedGames ;
+             :hasAtmosphere :Peaceful ;
+             :hasGamePlay :BasicGamePlayRule ;
+             :hasGenre :GameOfInformation ;
+             :hasNumberOfPlayers :SinglePlayer ;
+             :hasPlatform :Web .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#GTA2
+:GTA2 rdf:type owl:NamedIndividual ,
+               :Game ,
+               :GrandTheftAuto ,
+               :NamedGames ;
+      :hasAtmosphere :Aggressive ;
+      :hasGamePlay :GoalOriented ;
+      :hasGenre :GameOfAction ;
+      :hasNumberOfPlayers :Multiplayer ,
+                          :SinglePlayer ;
+      :hasPlatform :GamingConsole ,
+                   :PersonalComputer .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#GameOfAction
+:GameOfAction rdf:type owl:NamedIndividual ,
+                       :Game ,
+                       :Genre ;
+              :isGenreOf :CallOfDuty ,
+                         :CallOfDuty1 ,
+                         :GTA2 ,
+                         :GrandTheftAuto ,
+                         :SuperMario ,
+                         :SuperMario1 ,
+                         :WorldOfTanks ,
+                         :WorldOfTanks1 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#GameOfInformation
+:GameOfInformation rdf:type owl:NamedIndividual ,
+                            :Game ,
+                            :Genre ;
+                   :isGenreOf :Chess ,
+                              :ChessMaster ,
+                              :QuizPlanet ,
+                              :QuizPlanet1.1 ,
+                              :Sudoku ,
+                              :Sudoku1 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#GamingConsole
+:GamingConsole rdf:type owl:NamedIndividual ,
+                        :Game ,
+                        :Platform ;
+               :isPlatformOf :CallOfDuty ,
+                             :CallOfDuty1 ,
+                             :GTA2 ,
+                             :GrandTheftAuto ,
+                             :WorldOfTanks ,
+                             :WorldOfTanks1 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#GoalOriented
+:GoalOriented rdf:type owl:NamedIndividual ,
+                       :Game ,
+                       :GamePlay ;
+              :isGamePlayOf :CallOfDuty ,
+                            :CallOfDuty1 ,
+                            :GTA2 ,
+                            :GrandTheftAuto ,
+                            :QuizPlanet ,
+                            :QuizPlanet1.1 ,
+                            :Sudoku ,
+                            :Sudoku1 ,
+                            :WorldOfTanks ,
+                            :WorldOfTanks1 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#GrandTheftAuto
+:GrandTheftAuto rdf:type owl:NamedIndividual ,
+                         :Game ,
+                         :NamedGames ;
+                :hasAtmosphere :Aggressive ;
+                :hasGamePlay :GoalOriented ;
+                :hasGenre :GameOfAction ;
+                :hasNumberOfPlayers :Multiplayer ,
+                                    :SinglePlayer ;
+                :hasPlatform :GamingConsole ,
+                             :PersonalComputer .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#MobileDevices
+:MobileDevices rdf:type owl:NamedIndividual ,
+                        :Game ,
+                        :Platform ;
+               :isPlatformOf :CallOfDuty ,
+                             :CallOfDuty1 ,
+                             :SuperMario ,
+                             :SuperMario1 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#Multiplayer
+:Multiplayer rdf:type owl:NamedIndividual ,
+                      :Game ,
+                      :NumberOfPlayers ;
+             :isNumberOfPlayersOf :CallOfDuty ,
+                                  :CallOfDuty1 ,
+                                  :GTA2 ,
+                                  :GrandTheftAuto ,
+                                  :QuizPlanet ,
+                                  :QuizPlanet1.1 ,
+                                  :SuperMario ,
+                                  :SuperMario1 ,
+                                  :WorldOfTanks ,
+                                  :WorldOfTanks1 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#Peaceful
+:Peaceful rdf:type owl:NamedIndividual ,
+                   :Atmosphere ,
+                   :Game ;
+          :isAtmosphereOf :Chess ,
+                          :ChessMaster ,
+                          :QuizPlanet ,
+                          :QuizPlanet1.1 ,
+                          :Sudoku ,
+                          :Sudoku1 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#PersonalComputer
+:PersonalComputer rdf:type owl:NamedIndividual ,
+                           :Game ,
+                           :Platform ;
+                  :isPlatformOf :CallOfDuty ,
+                                :CallOfDuty1 ,
+                                :GTA2 ,
+                                :GrandTheftAuto ,
+                                :SuperMario ,
+                                :SuperMario1 ,
+                                :WorldOfTanks ,
+                                :WorldOfTanks1 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#QuizPlanet
+:QuizPlanet rdf:type owl:NamedIndividual ,
+                     :Game ,
+                     :NamedGames ;
+            :hasAtmosphere :Peaceful ;
+            :hasGamePlay :GoalOriented ;
+            :hasGenre :GameOfInformation ;
+            :hasNumberOfPlayers :Multiplayer ;
+            :hasPlatform :Web .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#QuizPlanet1.1
+:QuizPlanet1.1 rdf:type owl:NamedIndividual ,
+                        :Game ,
+                        :NamedGames ,
+                        :QuizPlanet ;
+               :hasAtmosphere :Peaceful ;
+               :hasGamePlay :GoalOriented ;
+               :hasGenre :GameOfInformation ;
+               :hasNumberOfPlayers :Multiplayer ;
+               :hasPlatform :Web .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#SinglePlayer
+:SinglePlayer rdf:type owl:NamedIndividual ,
+                       :Game ,
+                       :NumberOfPlayers ;
+              :isNumberOfPlayersOf :CallOfDuty ,
+                                   :CallOfDuty1 ,
+                                   :Chess ,
+                                   :ChessMaster ,
+                                   :GTA2 ,
+                                   :GrandTheftAuto ,
+                                   :Sudoku ,
+                                   :Sudoku1 ,
+                                   :SuperMario ,
+                                   :SuperMario1 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#Sudoku
+:Sudoku rdf:type owl:NamedIndividual ,
+                 :Game ,
+                 :NamedGames ;
+        :hasAtmosphere :Peaceful ;
+        :hasGamePlay :GoalOriented ;
+        :hasGenre :GameOfInformation ;
+        :hasNumberOfPlayers :SinglePlayer ;
+        :hasPlatform :Web .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#Sudoku1
+:Sudoku1 rdf:type owl:NamedIndividual ,
+                  :Game ,
+                  :NamedGames ,
+                  :Sudoku ;
+         :hasAtmosphere :Peaceful ;
+         :hasGamePlay :GoalOriented ;
+         :hasGenre :GameOfInformation ;
+         :hasNumberOfPlayers :SinglePlayer ;
+         :hasPlatform :Web .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#SuperMario
+:SuperMario rdf:type owl:NamedIndividual ,
+                     :Game ,
+                     :NamedGames ;
+            :hasAtmosphere :Aggressive ;
+            :hasGamePlay :BasicGamePlayRule ;
+            :hasGenre :GameOfAction ;
+            :hasNumberOfPlayers :Multiplayer ,
+                                :SinglePlayer ;
+            :hasPlatform :MobileDevices ,
+                         :PersonalComputer .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#SuperMario1
+:SuperMario1 rdf:type owl:NamedIndividual ,
+                      :Game ,
+                      :NamedGames ,
+                      :SuperMario ;
+             :hasAtmosphere :Aggressive ;
+             :hasGamePlay :BasicGamePlayRule ;
+             :hasGenre :GameOfAction ;
+             :hasNumberOfPlayers :Multiplayer ,
+                                 :SinglePlayer ;
+             :hasPlatform :MobileDevices ,
+                          :PersonalComputer .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#Web
+:Web rdf:type owl:NamedIndividual ,
+              :Game ,
+              :Platform ;
+     :isPlatformOf :Chess ,
+                   :ChessMaster ,
+                   :QuizPlanet ,
+                   :QuizPlanet1.1 ,
+                   :Sudoku ,
+                   :Sudoku1 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#WorldOfTanks
+:WorldOfTanks rdf:type owl:NamedIndividual ,
+                       :Game ,
+                       :NamedGames ;
+              :hasAtmosphere :Adventurous ;
+              :hasGamePlay :GoalOriented ;
+              :hasGenre :GameOfAction ;
+              :hasNumberOfPlayers :Multiplayer ;
+              :hasPlatform :GamingConsole ,
+                           :PersonalComputer .
+
+
+###  http://www.semanticweb.org/user/ontologies/2019/6/untitled-ontology-12#WorldOfTanks1
+:WorldOfTanks1 rdf:type owl:NamedIndividual ,
+                        :Game ,
+                        :NamedGames ,
+                        :WorldOfTanks ;
+               :hasAtmosphere :Adventurous ;
+               :hasGamePlay :GoalOriented ;
+               :hasGenre :GameOfAction ;
+               :hasNumberOfPlayers :Multiplayer ;
+               :hasPlatform :GamingConsole ,
+                            :PersonalComputer .
+
+
+###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/
